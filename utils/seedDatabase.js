@@ -2,23 +2,44 @@
  * Here, we can seed the database to fill it with initial values
  */
 
-const { Campus } = require("../database/models");
+const { Campus, Student } = require("../database/models");
 
 const seedDatabase = async () =>
 {
     await Promise.all([
-        Campus.create({
+        Campus.create(
+        {
             name: "Brooklyn College",
             address: "Brooklyn",
             imageUrl: "",
             description: "A college in Brooklyn",
         }),
-        Campus.create({
+        Campus.create(
+        {
             name: "College of Staten Island",
+            address: "Staten Island",
             description: "A college in Staten Island",
         }),
-        Campus.create({
+        Campus.create(
+        {
             name: "John Jay College",
+            address: "Manhattan",
+            description: "A college in Manhattan",
+        }),
+        
+        Student.create(
+        { 
+            firstName: "John",
+            lastName: "Doe",
+            email: "johndoe@unknown.com",
+            gpa: 3.82
+        }),
+        Student.create(
+        { 
+            firstName: "Jane",
+            lastName: "Doe",
+            email: "janedoe@unknown.edu",
+            gpa: 3.35
         }),
     ]);
 };
