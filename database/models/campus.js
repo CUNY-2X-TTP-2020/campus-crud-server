@@ -12,20 +12,21 @@ const Campus = db.define("campus",
         type: Sequelize.STRING, 
         allowNull: false 
     },
-    address:
-    {
-        type: Sequelize.STRING,
-        allowNull: true
-    },
     imageUrl:
     {
         type: Sequelize.STRING,
-        allowNull: true
+        defaultValue: "https://via.placeholder.com/150"
+    },
+    address:
+    {
+        type: Sequelize.STRING,
+        allowNull: false
     },
     description:
     {
-        type: Sequelize.STRING,
-        allowNull: true
+        type: Sequelize.TEXT,
+        defaultValue: "",
+        allowNull: false
     }
 });
 
