@@ -34,3 +34,5 @@ const Student = db.define("student",
         max: 4.0
     }
 });
+
+module.exports = Student;
