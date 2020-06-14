@@ -55,4 +55,39 @@ router.get("/:id", async (req, res, next) =>
     }
 });
 
+/**
+ * POST (add) a single student
+ * /api/students/
+ */
+router.post("/", async (req, res, next) =>
+{
+    // Take the form data from the request body
+    const { firstName, lastName, email, imageUrl, gpa, campusId } = req.body;
+
+    // Create a student object
+    const studentObj =
+    {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        imageUrl: imageUrl,
+        gpa: gpa,
+        campusId: campusId
+    };
+
+    try
+    {
+        // Create a new student on the database
+        const newStudent = await Student.create(studentObj);
+
+        // The database should return a student
+        // Send that student as a json to the client
+        res.status(201).send(newStudent);
+    }
+    catch(err)
+    {
+        next(err);
+    }
+});
+
 module.exports = router;
