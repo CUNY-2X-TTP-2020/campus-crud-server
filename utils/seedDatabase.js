@@ -11,7 +11,6 @@ const seedDatabase = async () =>
         {
             name: "Brooklyn College",
             address: "Brooklyn",
-            imageUrl: "",
             description: "A college in Brooklyn",
         }),
         Campus.create(
