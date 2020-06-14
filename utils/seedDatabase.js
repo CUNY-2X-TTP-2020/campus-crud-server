@@ -42,6 +42,13 @@ const seedDatabase = async () =>
             gpa: 3.35,
             campusId: 2
         }),
+        Student.create(
+        {
+            firstName: "Someone",
+            lastName: "Else",
+            email: "someoneelse@email.net",
+            gpa: 2.92
+        })
     ]);
 };
 
