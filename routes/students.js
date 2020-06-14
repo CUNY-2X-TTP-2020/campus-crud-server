@@ -61,24 +61,12 @@ router.get("/:id", async (req, res, next) =>
  */
 router.post("/", async (req, res, next) =>
 {
-    // Take the form data from the request body
-    const { firstName, lastName, email, imageUrl, gpa, campusId } = req.body;
-
-    // Create a student object
-    const studentObj =
-    {
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        imageUrl: imageUrl,
-        gpa: gpa,
-        campusId: campusId
-    };
+    Object.keys(req.body).forEach((key) => (req.body[key] === "") ? delete req.body[key] : req.body[key]);
 
     try
     {
         // Create a new student on the database
-        const newStudent = await Student.create(studentObj);
+        const newStudent = await Student.create(req.body);
 
         // The database should return a student
         // Send that student as a json to the client
