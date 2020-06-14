@@ -61,22 +61,12 @@ router.get("/:id", async (req, res, next) =>
  */
 router.post("/", async (req, res, next) =>
 {
-    // Take the form data from the request body
-    const { name, address, description, imageUrl } = req.body;
-
-    // Create a campus object
-    const campusObj =
-    {
-        name: name,
-        address: address,
-        description: description,
-        imageUrl: imageUrl
-    };
+    Object.keys(req.body).forEach((key) => (req.body[key] === "") ? delete req.body[key] : req.body[key]);
 
     try
     {
         // Create a new campus on the database
-        const newCampus = await Campus.create(campusObj);
+        const newCampus = await Campus.create(req.body);
         
         // The database should return a campus
         // Send that campus as a json to the client
