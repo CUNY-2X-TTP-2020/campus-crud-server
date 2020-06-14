@@ -5,7 +5,7 @@
 var express = require("express");
 var router = express.Router();
 
-const { Campus } = require("../database/models");
+const { Campus, Student } = require("../database/models");
 
 /**
  * GET all campuses
@@ -17,7 +17,7 @@ router.get("/", async (req, res, next) =>
     try
     {
         // Campuses will be the result of the Campus.findAll promise
-        const campuses = await Campus.findAll();
+        const campuses = await Campus.findAll({ include: Student });
 
         // If campuses is valid, it will be sent as a json response
         res.status(200).json(campuses);
@@ -26,6 +26,31 @@ router.get("/", async (req, res, next) =>
     {
         // If there is an error, it will be passed via the next parameter to the 
         // error handler middleware
+        next(err);
+    }
+});
+
+/**
+ * GET a single campus based on its id
+ * /api/campuses/:id
+ * /api/campuses/10 would respond with a campus with id 10
+ */
+router.get("/:id", async (req, res, next) =>
+{
+    // Get the id from params
+    const { id } = req.params;
+
+    // Query the database for a campus with matching id
+    try
+    {
+        // If successful
+        const campus = await Campus.findByPk(id, { include: Student });
+
+        // Send back the campus as a response
+        res.status(200).json(campus);
+    }
+    catch(err)
+    {
         next(err);
     }
 });
