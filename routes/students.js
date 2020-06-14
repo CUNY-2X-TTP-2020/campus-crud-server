@@ -5,7 +5,7 @@
 var express = require("express");
 var router = express.Router();
 
-const { Student } = require("../database/models");
+const { Student, Campus } = require("../database/models");
 
 /**
  * GET all students
@@ -17,7 +17,7 @@ router.get("/", async (req, res, next) =>
     try
     {
         // Students will be the result of Student.findAll promise
-        const students = await Student.findAll();
+        const students = await Student.findAll({ include: Campus });
 
         // If students is valid, it will be sent as a json response
         res.status(200).json(students);
