@@ -25,8 +25,8 @@
 ## Single Student and Single Campus
 
 ### Express and Sequelize
-- [ ] Write a route to serve up a single campus (based on its id), including the students enrolled at that campus
-- [ ] Write a route to serve up a single student (based on their id), including the campus the student is enrolled at
+- [X] Write a route to serve up a single campus (based on its id), including the students enrolled at that campus
+- [X] Write a route to serve up a single student (based on their id), including the campus the student is enrolled at
 
 ---
 
