@@ -30,4 +30,29 @@ router.get("/", async (req, res, next) =>
     }
 });
 
+/**
+ * GET a single campus based on its id
+ * /api/campuses/:id
+ * /api/campuses/10 would respond with a campus with id 10
+ */
+router.get("/:id", async (req, res, next) =>
+{
+    // Get the id from params
+    const { id } = req.params;
+
+    // Query the database for a campus with matching id
+    try
+    {
+        // If successful
+        const campus = await Campus.findByPk(id, { include: Student });
+
+        // Send back the campus as a response
+        res.status(200).json(campus);
+    }
+    catch(err)
+    {
+        next(err);
+    }
+});
+
 module.exports = router;
