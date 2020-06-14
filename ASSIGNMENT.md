@@ -33,8 +33,8 @@
 ## Adding a Campus and Adding a Student
 
 ### Express and Sequelize
-- [ ] Write a route to add a new campus
-- [ ] Write a route to add a new student
+- [X] Write a route to add a new campus
+- [X] Write a route to add a new student
 
 ---
 
