@@ -78,4 +78,32 @@ router.post("/", async (req, res, next) =>
     }
 });
 
+/**
+ * DELETE a single campus
+ * /api/campuses/:id
+ * /api/campuses/10 would delete a campus with id 10
+ */
+router.delete("/:id", async (req, res, next) =>
+{
+    const { id } = req.params;
+
+    // Get an id for the campus to delete
+    try
+    {
+        // Pass the id to the database to find campus to be deleted
+        // Database would either respond success or failure
+        const campus = await Campus.findByPk(id);
+
+        // Invoke the .destroy() method on the returned campus
+        await campus.destroy();
+
+        // Send a success message to the client
+        res.sendStatus(204);
+    } 
+    catch(err)
+    {
+        next(err);
+    }
+});
+
 module.exports = router;
