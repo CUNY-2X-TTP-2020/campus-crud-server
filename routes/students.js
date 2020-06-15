@@ -78,4 +78,32 @@ router.post("/", async (req, res, next) =>
     }
 });
 
+/**
+ * DELETE a single student
+ * /api/students/:id
+ * /api/students/10 would delete a student with id 10
+ */
+router.delete("/:id", async (req, res, next) =>
+{
+    const { id } = req.params;
+
+    // Get an id for the student to delete
+    try
+    {
+        // Pass the id to the database to find student to be deleted
+        // Database would either respond success or failure
+        const student = await Student.findByPk(id);
+
+        // Invoke the .destroy() method on the returned student
+        await student.destroy();
+
+        // Send a success message to the client
+        res.sendStatus(204);
+    }
+    catch(err)
+    {
+        next(err);
+    }
+});
+
 module.exports = router;
