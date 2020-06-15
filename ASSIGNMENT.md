@@ -41,5 +41,5 @@
 ## Removing a Campus and Removing a Student
 
 ### Express and Sequelize
-- [ ] Write a route to remove a campus (based on its id)
-- [ ] Write a route to remove a student (based on their id)
+- [X] Write a route to remove a campus (based on its id)
+- [X] Write a route to remove a student (based on their id)
